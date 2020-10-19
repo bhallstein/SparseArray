@@ -74,6 +74,11 @@ struct SparseArray {
 	}
 		// NB: remove() doesn't check if entry in was already in the
 		// free list -- if so, bad things will happen
+
+
+	size_t n() {
+		return v.size() - free_list.size();
+	}
 };
 
 #endif

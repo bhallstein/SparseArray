@@ -8,7 +8,7 @@ struct X {
 	float b;
 };
 
-bool X_eq(X x1, X x2) {
+bool x_equal(X x1, X x2) {
 	return x1.a == x2.a && x1.b == x2.b;
 }
 
@@ -51,10 +51,10 @@ void test_SparseArray() {
 	arr.push(x3);
 	p_assert(arr.v.size() == 4);
 	p_assert(arr.free_list.size() == 0);
-	p_assert(X_eq(x0, arr.v[0]));
-	p_assert(X_eq(x1, arr.v[1]));
-	p_assert(X_eq(x2, arr.v[2]));
-	p_assert(X_eq(x3, arr.v[3]));
+	p_assert(x_equal(x0, arr.v[0]));
+	p_assert(x_equal(x1, arr.v[1]));
+	p_assert(x_equal(x2, arr.v[2]));
+	p_assert(x_equal(x3, arr.v[3]));
 
 	p_header("remove from middle");
 	arr.remove(1);
@@ -75,8 +75,11 @@ void test_SparseArray() {
 	p_assert(arr.free_list.size() == 0);
 
 	p_header("contains expected items");
-	p_assert(X_eq(x0, arr.v[0]));
-	p_assert(X_eq(x2, arr.v[1]));
+	p_assert(x_equal(x0, arr.v[0]));
+	p_assert(x_equal(x2, arr.v[1]));
+  
+  p_header("n() -> total number of items");
+  p_assert(arr.n() == arr.v.size() - arr.free_list.size());
 }
 
 
