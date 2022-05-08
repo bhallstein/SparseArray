@@ -33,13 +33,6 @@ void test_SparseArray() {
 	p_assert(arr.v.capacity() == 4);
 	p_assert(arr.free_list.size() == 0);
 
-	p_header("remove when no items");
-	arr.remove(3);
-	arr.remove(0);
-	p_assert(arr.v.size() == 0);
-	p_assert(arr.v.capacity() == 4);
-	p_assert(arr.free_list.size() == 0);
-
 	p_header("push items when free list empty");
 	X x0{0,  0.0};
 	X x1{10, 100.0};
@@ -77,7 +70,7 @@ void test_SparseArray() {
 	p_header("contains expected items");
 	p_assert(x_equal(x0, arr.v[0]));
 	p_assert(x_equal(x2, arr.v[1]));
-  
+
   p_header("n() -> total number of items");
   p_assert(arr.n() == arr.v.size() - arr.free_list.size());
 }

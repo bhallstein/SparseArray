@@ -36,11 +36,15 @@ struct SparseArray {
 	typedef T value_type;
 
 
-	SparseArray(int initial_size)
-	{
+	SparseArray(size_t initial_size) {
 		v.reserve(initial_size);
 	}
 	SparseArray() = delete;
+
+
+	T& operator[](size_t i) {
+		return v[i];
+	}
 
 
 	size_t push(const T &t) {
@@ -59,13 +63,7 @@ struct SparseArray {
 
 
 	void remove(size_t i) {
-		size_t size = v.size();
-
-		if (size == 0) {
-			return;
-		}
-
-		if (i == size - 1) {
+		if (i == v.size() - 1) {
 			v.pop_back();
 		}
 		else {
